@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <type_traits>
 
 // #define DEBUG;
 
@@ -14,34 +15,50 @@ double askForDouble()
    return d;
 }
 
+//consteval forces compile-time evaluation
+//auto keyword makes it runtime evaluate if nessicary
+//only works if compiler can see entire definition. therefore we must define
+//   them in a header file. or they are implicitly inline of defined in multiple files.
+// consteval auto int getFour()
+// {
+//    return 2+2;
+// }
+
+
 /*
  * inline keywoard is a hint not a decree to the compiler
  * used to declare multiple of the same function because they are not linked,
  * rather they are put inline a comiplation time.
  * used in HEADER files, only
  */
-constexpr void printSus(){ //constexpr works on functions as well :)
-   std::cout << "sus\n";
+// constexpr void printSus(){ //constexpr works on functions as well :)
+void printString(std::string_view str)
+{
+   std::cout << str << '\n'; //this cannot be a constexpr because of sideeffect.
 }
 
 int main()
 {
+   // std::cout << getFour() << '\n';
    constexpr double pi{3.14159};
+
+   printString("amongus");
+
    // const int sides_of_square;
    //ask user for a double and assign it to x
-   double x{askForDouble()};
-   //ask user for a double and assign it to y
-   double y{askForDouble()};
+   // double x{askForDouble()};
+   // //ask user for a double and assign it to y
+   // double y{askForDouble()};
 
-   //get a basic math symbol from user
-   char math_symbol{};
-   std::cout << "Enter of of the following: +, -, *, or / : ";
-   std::cin >> math_symbol;
+   // //get a basic math symbol from user
+   // char math_symbol{};
+   // std::cout << "Enter of of the following: +, -, *, or / : ";
+   // std::cin >> math_symbol;
 
-   if(math_symbol == '+')
-   {
-      std::cout << x << " + " << y << " is " << x+y << '\n'; 
-   }
+   // if(math_symbol == '+')
+   // {
+   //    std::cout << x << " + " << y << " is " << x+y << '\n'; 
+   // }
 
    
    
