@@ -11,6 +11,7 @@
             "-o",
             "${fileDirname}/compiled/${fileBasenameNoExtension}",
             "-I/source/includes",
+            // "-Werror",
          ],
          "options": {
             "cwd": "${fileDirname}"
